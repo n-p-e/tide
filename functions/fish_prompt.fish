@@ -11,7 +11,10 @@ set -l prompt_var _tide_prompt_$fish_pid
 set -U $prompt_var # Set var here so if we erase $prompt_var, bg job won't set a uvar
 
 set_color normal | read -l color_normal
-status fish-path | read -l fish_path
+#status fish-path | read -l fish_path
+# Updating fish with Homebrew removes the old fish binary (each version has its own dir)
+# Eval the prompt using the new version
+set -l fish_path fish
 
 # _tide_repaint prevents us from creating a second background job
 function _tide_refresh_prompt --on-variable $prompt_var --on-variable COLUMNS
